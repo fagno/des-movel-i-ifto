@@ -31,4 +31,87 @@ Mestre em Modelagem Computacional de Sistemas – UFT.
 
 IMPORTANT: MATERIAL EM CONSTRUÇÃO
 
+== Activity
+
+A classe Activity representa uma tela da aplicação e é responsável por controlar os eventos da tela e definir qual View será responsável por desenhar a interface do usuário.
+
+A classe da Activity deve sobrescrever o método onCreate(bundle). Método obrigatório e responsável por realizar a inicialização necessária para executar a aplicação.
+
+IMPORTANT: Cada Activity deve ser obrigatoriamente declarada no arquivo AndroidManifest.xml.
+
+Na prática podemos associar a palavra “activity” à palavra “tela”. Iniciar uma activity: “iniciar um tela”. A tradução da palavra activity para o português é Atividade. 
+
+=== Classes FragmentActivity e AppCompatActivity
+
+No Android 3.0 foram criadas a action bar e a API de fragments.
+
+A action bar é representada pela classe android.app.ActionBar. Para utilizar essas classes em versões mais antigas do Android o Google criou a biblioteca de compatibilidade v4 (API Level 4) que é compatível com o Android 1.6 ou superior, e dentre as APIs que ela tem está contida a API
+de fragments.
+
+Para usar os fragments de compatibilidade todas as activities do projeto precisam herdar de android.support.v4.app.FragmentActivity, subclasse da
+classe android.app.Activity, que permite utilizar fragments em versões anteriores do Android. 
+
+Da mesma forma, existe a biblioteca de compatibilidade v7 (API Level 7), que é compatível com Android 2.3 ou superior. A v7 contém a action bar, que permite habilitar a action bar em dispositivos mais antigos. 
+
+Resumindo, temos três classes de activity que você precisa
+conhecer.
+
+1. android.app.Activity: classe padrão da activity.
+2. android.support.v4.app.FragmentActivity: Classe da
+biblioteca de compatibilidade v4, que permite utilizar os
+fragments em versões mais antigas do Android.
+3. android.support.v7.app.FragmentActivity: Classe da
+biblioteca de compatibilidade v7, que permite utilizar a action bar
+em versões mais antigas do Android.
+
+=== Ciclo de Vida de uma Activity
+
+.Ciclo de Vida de uma Activity 
+image::activity_lifecycle.png[] 
+
+- onCreate(): Esse callback precisa ser implementado. Ele é acionado assim que o sistema cria a atividade. Quando a atividade é criada, ela insere o estado Criado. No método onCreate(), você executa a lógica básica de inicialização do aplicativo. Isso deve acontecer somente uma vez durante todo o período que a atividade durar. 
+
+- onStart(): Quando a atividade insere o estado Iniciado, o sistema invoca esse callback. A chamada onStart() torna a atividade visível ao usuário, à medida que o aplicativo prepara a atividade para inserir o primeiro plano e se tornar interativa.
+
+- onResume(): Quando a atividade insere o estado Retomado, ela vem para o primeiro plano e o sistema invoca o callback onResume(). É nesse estado que o aplicativo interage com o usuário. O aplicativo é mantido nesse estado até que algo ocorra e retire o foco do aplicativo. Um evento assim pode ser, por exemplo, o recebimento de uma chamada telefônica, a navegação do usuário para outra atividade ou o desligamento da tela do dispositivo.
+
+- onPause(): O sistema chama esse método como a primeira indicação de que o usuário está deixando sua atividade (embora nem sempre signifique que a atividade esteja sendo destruída). Isso indica que a atividade não está mais em primeiro plano (embora ainda possa estar visível se o usuário estiver no modo de várias janelas).
+
+- onStop(): Quando a atividade não estiver mais visível ao usuário, ela inserirá o estado Interrompido e o sistema invocará o callback onStop(). Isso pode ocorrer, por exemplo, quando uma atividade recém-iniciada preenche toda a tela. O sistema também poderá chamar onStop() quando a atividade parar de operar e estiver prestes a ser concluída.
+
+- onDestroy(): onDestroy() é chamado antes de a atividade ser destruída. O sistema invoca esse callback porque:
+
+1. a atividade está sendo finalizada (pelo fato de o usuário descartá-la completamente ou devido a finish() ser chamado na atividade); ou
+2. o sistema está destruindo temporariamente a atividade devido a uma mudança na configuração (como a rotação do dispositivo ou o modo de várias janelas).
+
+== Action Bar
+
+Apresenta aos usuários as possíveis ações disponíveis no aplicativo. Neste barra, é possivel definir título do aplicativo ou telas, controle de navegação, botões customizados com as principais funções do aplicativo e menu flutuante.   
+
+Ao criar uma Activity, a Action Bar é inserida por padrão, para desabalitar, ação desejável em algumas situações, por exemplo, em um form de login, basta apenas inserir o comando abaixo.
+
+.Desabilitar a Action Bar em uma Activity
+[source, java]
+----
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        getSupportActionBar().hide();
+    }
+}
+----
+
+== Layouts no Android
+
+== Interface Gráfica
+
 == Referências
+
+1. LECHETA, Ricardo R. Google Android: Aprenda a criar aplicações
+para dispositivos móveis com o Android SDK. 5ª ed. – São Paulo:
+Novatec, 2016.
+
+2. https://developer.android.com/guide/components/activities/activity-lifecycle?hl=pt-br
