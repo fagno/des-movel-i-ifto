@@ -29,8 +29,6 @@
 Fagno Alves Fonseca <fagno.fonseca@ifto.edu.br>
 Mestre em Modelagem Computacional de Sistemas – UFT.
 
-IMPORTANT: MATERIAL EM CONSTRUÇÃO
-
 == Activity
 
 A classe Activity representa uma tela da aplicação e é responsável por controlar os eventos da tela e definir qual View será responsável por desenhar a interface do usuário.
@@ -66,7 +64,7 @@ em versões mais antigas do Android.
 
 === Ciclo de Vida de uma Activity
 
-.Ciclo de Vida de uma Activity 
+.Ciclo de Vida de uma Activity [Fonte:https://developer.android.com/guide/components/activities/activity-lifecycle?hl=pt-br] 
 image::activity_lifecycle.png[] 
 
 - onCreate(): Esse callback precisa ser implementado. Ele é acionado assim que o sistema cria a atividade. Quando a atividade é criada, ela insere o estado Criado. No método onCreate(), você executa a lógica básica de inicialização do aplicativo. Isso deve acontecer somente uma vez durante todo o período que a atividade durar. 
@@ -84,11 +82,62 @@ image::activity_lifecycle.png[]
 1. a atividade está sendo finalizada (pelo fato de o usuário descartá-la completamente ou devido a finish() ser chamado na atividade); ou
 2. o sistema está destruindo temporariamente a atividade devido a uma mudança na configuração (como a rotação do dispositivo ou o modo de várias janelas).
 
+=== Navegando entre telas
+//INCLUIR DEPOIS exemplo de uso do método startActivityForResult()
+
+Para navegar de uma tela para outra utilizamos o método startActivity(intent) conforme exemplo a seguir. 
+
+IMPORTANT: Este tópico tem como pré-requisito o uso de Buttons, disponível no tópico link:/Buttons[Buttons]
+
+.Navegar de uma tela para outra
+[source, java]
+----
+Intent intent = new Intent(this,NewActivity.class);
+startActivity(intent);
+----
+
+Neste exemplo, foi criado um objeto do tipo Intent, ou seja, uma intenção. Por parâmetro foi passado a referência do contexto, neste caso o this e também a activity que deseja abrir.
+
+Em algumas situações, não é possível representar o contexto com o this da classe, sendo necessário implementar um método dentro da activity conforme a seguir.
+
+.Método para retornar o contexto caso o this não funcione
+[source, java]
+----
+public Context getActivity(){
+    return this;
+}
+----
+
+=== Enviando dados para outra tela
+
+Com a classe Bundle é possível enviar dados de uma activity para outra usando a estrutura chave e valor. No entanto, neste tutorial irei apresentar como fazer tal tarefa utilizando a classe Intent devido já está sendo utilizada durante a navegação entre telas.
+
+.Enviar dados para outra activity
+[source, java]
+----
+Intent intent = new Intent(this,NewActivity.class);
+intent.putExtra("chave","Android Studio!");
+startActivity(intent);
+----
+
+Para ler o parâmetro na outra activity faça conforme a seguir.
+
+.Enviar dados para outra activity
+[source, java]
+----
+Intent intent = getIntent();
+String valor = intent.getStringExtra("chave");
+----
+
+Se você imprimir o valor da String "valor" a saída será "Android Studio!".
+
 == Action Bar
 
 Apresenta aos usuários as possíveis ações disponíveis no aplicativo. Neste barra, é possivel definir título do aplicativo ou telas, controle de navegação, botões customizados com as principais funções do aplicativo e menu flutuante.   
 
-Ao criar uma Activity, a Action Bar é inserida por padrão, para desabalitar, ação desejável em algumas situações, por exemplo, em um form de login, basta apenas inserir o comando abaixo.
+=== Ocultando a Action Bar
+
+Ao criar uma Activity, a Action Bar é inserida por padrão, para desabalitar, ação desejável em algumas situações, por exemplo, em um form de login. O método onCreate() a seguir apresenta como fazer.
 
 .Desabilitar a Action Bar em uma Activity
 [source, java]
@@ -99,14 +148,32 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //oculta a ActionBar
         getSupportActionBar().hide();
+
     }
 }
 ----
 
+=== Alterar o título da Action Bar
+
+A instrução a seguir define um título para a activity.
+
+.Define um título para a ActionBar
+[source, java]
+----
+getSupportActionBar().setTitle("Home");
+----
+
+=== Voltar para a tela anterior
+
 == Layouts no Android
 
-== Interface Gráfica
+== Interface
+
+=== Mensagens
+
+=== Buttons
 
 == Referências
 
