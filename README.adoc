@@ -29,7 +29,7 @@
 Fagno Alves Fonseca <fagno.fonseca@ifto.edu.br>
 Mestre em Modelagem Computacional de Sistemas – UFT.
 
-1. link:ambiente'/[Ambiente de Desenvolvimento]
+1. link:ambiente/[Ambiente de Desenvolvimento]
 1. link:conceitos/[Conceitos Básicos]
 1. link:activity/[Activity]
 1. link:layouts/[Layouts no Android]
