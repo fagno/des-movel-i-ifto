@@ -64,7 +64,7 @@ em versões mais antigas do Android.
 
 === Ciclo de Vida de uma Activity
 
-.Ciclo de Vida de uma Activity [Fonte:https://developer.android.com/guide/components/activities/activity-lifecycle?hl=pt-br] 
+.Ciclo de Vida de uma Activity[Referência 2]
 image::activity_lifecycle.png[] 
 
 - onCreate(): Esse callback precisa ser implementado. Ele é acionado assim que o sistema cria a atividade. Quando a atividade é criada, ela insere o estado Criado. No método onCreate(), você executa a lógica básica de inicialização do aplicativo. Isso deve acontecer somente uma vez durante todo o período que a atividade durar. 
@@ -87,7 +87,7 @@ image::activity_lifecycle.png[]
 
 Para navegar de uma tela para outra utilizamos o método startActivity(intent) conforme exemplo a seguir. 
 
-IMPORTANT: Este tópico tem como pré-requisito o uso de Buttons, disponível no tópico link:/Buttons[Buttons]
+IMPORTANT: Este tópico tem como pré-requisito o uso de Buttons, disponível no tópico <<#_buttons,Buttons>>.
 
 .Navegar de uma tela para outra
 [source, java]
@@ -165,15 +165,33 @@ A instrução a seguir define um título para a activity.
 getSupportActionBar().setTitle("Home");
 ----
 
-=== Voltar para a tela anterior
+//=== Voltar para a tela anterior
 
-== Layouts no Android
+//== Layouts no Android
 
 == Interface
 
-=== Mensagens
+//=== Mensagens
 
 === Buttons
+
+Neste tópico iremos conhecer algumas maneiras de criar eventos para botões.
+
+.Ação botão - exemplo 1
+[source, java]
+----
+Button btn1 = findViewById(R.id.button1);
+btn1.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+
+        Toast.makeText(getActivity(),"Olá Turma!",Toast.LENGTH_LONG).show();
+
+    }
+});
+----
+
+O exemplo 1, demontra como criar um evento utilizando o método setOnClickListener(). Acão criada dentro do método Oncreate().
 
 == Referências
 
