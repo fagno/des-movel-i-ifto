@@ -29,63 +29,30 @@
 Fagno Alves Fonseca <fagno.fonseca@ifto.edu.br>
 Mestre em Modelagem Computacional de Sistemas – UFT.
 
-== Ação evento OnClick Botão - Exemplo 1
-
-.Exemplo 1
-[source, java]
-----
-    Button btn1 = findViewById(R.id.button1);
-    btn1.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-
-            Toast.makeText(getActivity(),"Olá Turma!",Toast.LENGTH_LONG).show();
-
-        }
-    });
-----
-
-== Ação evento OnClick Botão - Exemplo 2
-
-.Exemplo 2
-[source, java]
-----
-    Button btn1 = findViewById(R.id.button1);
-    btn1.setOnClickListener(acaobotao());
-
-    private View.OnClickListener acaobotao() {
-        return new Button.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(),"Olá Turma, exemplo 2!",Toast.LENGTH_LONG).show();
-            }
-        };
-    }
-
-----
-
-== Ação evento OnClick Botão - Exemplo 3
-
-Você deve definir o layout a propriedade onClick
-[source, xml]
-----
-<Button
-        android:id="@+id/button1"
-        android:onClick="acaobotao"/>
-----
-
-.Exemplo 2
-[source, java]
-----
-    public void acaobotao(View view) {
-            Toast.makeText(getActivity(),"Olá Turma, exemplo 3!",Toast.LENGTH_LONG).show();
-    }
-    
-----
+1. link:ambiente'/[Ambiente de Desenvolvimento]
+1. link:conceitos/[Conceitos Básicos]
+1. link:activity/[Activity]
+1. link:layouts/[Layouts no Android]
+1. link:armazenamento/[Armazenamento no Android]
+1. link:fragments/[Fragments]
 
 
+IMPORTANT: MATERIAL EM CONSTRUÇÃO
 
 
+// .Teste [fonte: referência]
+// image::cliente-faz.png[] 
+
+//== GIF
+//image::horizontal-scaling-small.gif[]
+//incluir link dentro do colchetes caso desejar [link=http://google.com]
+
+//== VIDEO
+//video::a4HCgieO3Kc[youtube,width=640,height=480]
+
+
+// == Código fonte
+// .Título Código
 // [source, java]
 // ----
 // public class Pessoa{
@@ -102,13 +69,12 @@ Você deve definir o layout a propriedade onClick
 //     }
 
 // }
-// ----
 
 // == Código fonte (incluir código fonte)
 // .Título Código
 // [source, java]
 // ----
-// include::Quadrado.java[]
+// include::Teclado.java[]
 // ----
 
 
