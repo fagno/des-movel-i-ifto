@@ -25,10 +25,6 @@
 :lang: pt-BR
 //3+| mesclar linha tabela
 
-link:https://fagno.github.io/des-movel-i-ifto/[HOME]
-
-link:des-movel-i-ifto/[HOME 2]
-
 = Programação para Dispositivos Móveis I
 Fagno Alves Fonseca <fagno.fonseca@ifto.edu.br>
 Mestre em Modelagem Computacional de Sistemas – UFT.
