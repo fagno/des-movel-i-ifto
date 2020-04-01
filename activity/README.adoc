@@ -296,7 +296,7 @@ O exemplo a seguir descreve como utilizar o spinner para selecioanr um item da l
 ...
 ----
 
-.Activity.java
+.MainActivity.java
 [source, java]
 ----
 public class MainActivity extends AppCompatActivity {
@@ -342,6 +342,30 @@ O resultado é apresenta na imagem a seguir.
 
 .saída do programa 
 image::spinnerresultadoapp.png[]
+
+=== ImageView
+
+Para carregar uma imagem em um ImageView utilize o método setImageResource() da classe ImageView. A seguir é apresentado um exemplo.
+
+.activity_main.xml
+[source, xml]
+----
+...
+<ImageView
+    android:id="@+id/imageView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+</ImageView>
+...
+----
+
+.MainActivity.java
+[source, java]
+----
+...
+ImageView imageView = findViewById(R.id.imageView);
+imageView.setsetImageResource( id );
+----
 
 //=== AutoCompleteTextViewArquivo
 
