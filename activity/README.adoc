@@ -343,11 +343,9 @@ O resultado é apresenta na imagem a seguir.
 .saída do programa 
 image::spinnerresultadoapp.png[]
 
-=== AutoCompleteTextViewArquivo
-IMPORTANT: MATERIAL EM CONSTRUÇÃO
+//=== AutoCompleteTextViewArquivo
 
-=== Seekbar
-IMPORTANT: MATERIAL EM CONSTRUÇÃO
+//=== Seekbar
 
 == Referências
 
