@@ -48,8 +48,6 @@ IMPORTANT: MATERIAL EM CONSTRUÇÃO
 //== VIDEO
 //video::a4HCgieO3Kc[youtube,width=640,height=480]
 
-
-// == Código fonte
 // .Título Código
 // [source, java]
 // ----
