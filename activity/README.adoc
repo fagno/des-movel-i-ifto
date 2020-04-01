@@ -217,7 +217,7 @@ private View.OnClickListener acaobotao() {
 }
 ----
 
-O exemplo 3, apresenta outra maneira de definir ações de clique do botão. Neste exemplo, é necessário definir no arquivo activity_main.xml o atributo android:onClick="acaobotao" com o nome do método de ação do botão. Este atributo informa que o método será chamado na activity, sendo necessário que você faça a definição deste métodos.
+O exemplo 3 apresenta outra maneira de definir ações de clique do botão. Neste exemplo, é necessário definir no arquivo activity_main.xml o atributo android:onClick="acaobotao" com o nome do método de ação do botão. Este atributo informa que o método será chamado na activity, sendo necessário que você faça a definição deste métodos.
 
 .Ação botão - exemplo 3
 [source, xml]
@@ -340,12 +340,14 @@ public class MainActivity extends AppCompatActivity {
 
 O resultado é apresenta na imagem a seguir.
 
-.exemplo 
+.saída do programa 
 image::spinnerresultadoapp.png[]
 
-//=== AutoCompleteTextViewArquivo
+=== AutoCompleteTextViewArquivo
+IMPORTANT: MATERIAL EM CONSTRUÇÃO
 
-//=== Seekbar
+=== Seekbar
+IMPORTANT: MATERIAL EM CONSTRUÇÃO
 
 == Referências
 
