@@ -100,7 +100,7 @@ startActivity(intent);
 
 Neste exemplo, foi criado um objeto do tipo Intent, ou seja, uma intenção. Por parâmetro foi passado a referência do contexto, neste caso o this e também a activity que deseja abrir.
 
-Em algumas situações, não é possível representar o contexto com o this da classe, sendo necessário implementar um método dentro da activity conforme a seguir.
+Em algumas situações, não é possível representar o contexto com o this da classe. Você pode implementar o método dentro da activity conforme a seguir, ou utilizar NomeDaActivity.this, neste exemplo MainActivity.this.
 
 .Método para retornar o contexto caso o this não funcione
 [source, java]
@@ -244,7 +244,7 @@ public void acaobotao(View view) {
 
 === CheckBox
 
-Alguns métodos no uso do CheckBox se faz importe. Por exemplo, para verificar se o checkbox está marcado ou não, utilize o método isChecked().
+O Checkbox permite criar uma caixa de marcação múltipla. Alguns métodos no uso do CheckBox se faz importante. Por exemplo, para verificar se o checkbox está marcado ou não, utilize o método isChecked().
 
 .Métodos CheckBox
 [source, java]
@@ -371,7 +371,36 @@ imageView.setsetImageResource( id );
 
 //=== AutoCompleteTextViewArquivo
 
-//=== Seekbar
+=== Seekbar
+
+SeekBar é um componente que define uma barra de progresso com nível. Você pode definir uma valor máximo, sendo o valor mínimo 0. 
+
+.MainActivity.java
+[source, java]
+----
+...
+        seekBar = findViewById(R.id.seekBar);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+                //@param "progress": indica o nível selecionado
+                Toast.makeText(MainActivity.this,String.valueOf(progress),Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+...
+----
 
 == Referências
 
