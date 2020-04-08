@@ -433,6 +433,10 @@ SeekBar é um componente que define uma barra de progresso com nível. Você pod
 
 O método setOnSeekBarChangeListener() retorna através do parâmetro "progress" o nível selecionado.
 
+Atributos importantes do componente:
+
+- a ropriedade "max" define o valor valor máximo da SeekBar.
+
 .Seekbar
 image::seekbar.png[]
 
@@ -474,8 +478,11 @@ image::ratingbar.png[]
 O método setOnRatingBarChangeListener() retorna através do parâmetro "rating" o nível selecionado de acordo a quantidade de estrelas.
 
 Atributos importantes do componente:
+
 - numStars: define o número de itens (estrelas);
+
 - rating: define o valor padrão do nível classificação;
+
 - stepSize: define o incremento do nível classificação.
 
 .MainActivity.java
