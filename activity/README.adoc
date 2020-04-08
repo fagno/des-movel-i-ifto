@@ -342,7 +342,7 @@ public class MainActivity extends AppCompatActivity {
 
 O resultado é apresenta na imagem a seguir.
 
-.saída do programa 
+.Executando o App 
 image::spinnerresultadoapp.png[]
 
 === ImageView
@@ -367,38 +367,127 @@ Para carregar uma imagem em um ImageView utilize o método setImageResource() da
 ...
 ImageView imageView = findViewById(R.id.imageView);
 imageView.setsetImageResource( id );
+...
 ----
 
-//=== AutoCompleteTextViewArquivo
+=== AutoCompleteTextView
 
-=== Seekbar
+O componente AutoCompleteTextView é um campo de texto editável. Ele possibilita a entrada de texto e forneça sugestões para preenchimento automático. Utilizando quando deseja carregar uma lista de valores, e ao invés de selecionar um item em uma lista, você digita parte do texto e os resultados serão exibidos.
 
-SeekBar é um componente que define uma barra de progresso com nível. Você pode definir uma valor máximo, sendo o valor mínimo 0. 
+No exemplo a seguir, iremos apresentar um simples exemplo que carrega opções de frutas conforme texto digitado. Neste exemplo, foi criado uma instância de ArrayAdapter que recebe a lista de frutas, sendo carregado a seguir utilizando o método setAdapter() do autoCompleteTextView. Utilização bem semelhante ao uso do listView.
 
 .MainActivity.java
 [source, java]
 ----
 ...
-        seekBar = findViewById(R.id.seekBar);
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+public class MainActivity extends AppCompatActivity {
 
-                //@param "progress": indica o nível selecionado
-                Toast.makeText(MainActivity.this,String.valueOf(progress),Toast.LENGTH_SHORT).show();
+    AutoCompleteTextView autoCompleteTextView;
 
-            }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+        autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
 
-            }
+        List<String> frutas = new ArrayList();
+        frutas.add("Banana");
+        frutas.add("Uva");
+        frutas.add("Pera");
+        frutas.add("Morango");
+        frutas.add("Melão");
+        frutas.add("Maçã");
+        frutas.add("Abacaxi");
+        frutas.add("Melancia");
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_dropdown_item_1line,frutas);
+        autoCompleteTextView.setAdapter(adapter);
+        
+    }
+}
+...
+----
 
-            }
-        });
+No layout activity_main.xml é necessário definir o componente AutoCompleteTextView conforme a seguir.
+
+.activity_main.xml
+[source, xml]
+----
+...
+<AutoCompleteTextView
+    android:id="@+id/autoCompleteTextView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
+...
+----
+
+Na figura a seguir, é apresentado a execução do exemplo.
+
+.Executando o App 
+image::autoCompleteTextView.png[]
+
+=== Seekbar
+
+SeekBar é um componente que define uma barra de progresso com nível. Você pode definir uma valor máximo, sendo o valor mínimo 0. 
+
+O método setOnSeekBarChangeListener() retorna através do parâmetro "progress" o nível selecionado.
+
+.Seekbar
+image::seekbar.png[]
+
+.MainActivity.java
+[source, java]
+----
+...
+SeekBar seekBar = findViewById(R.id.seekBar);
+
+seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+        //@param "progress": indica o nível selecionado
+        Toast.makeText(MainActivity.this,String.valueOf(progress),Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
+    }
+});
+...
+----
+
+=== Ratingbar
+
+Semelhante ao Seekbar, o Ratingbar  mostra uma classificação em estrelas.
+
+.Ratingbar
+image::ratingbar.png[]
+
+O método setOnRatingBarChangeListener() retorna através do parâmetro "rating" o nível selecionado de acordo a quantidade de estrelas.
+
+.MainActivity.java
+[source, java]
+----
+...
+RatingBar ratingBar = findViewById(R.id.ratingBar);
+
+ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+    @Override
+    public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+        
+        //@param "progress": indica o nível selecionado
+        Toast.makeText(MainActivity.this,String.valueOf(rating),Toast.LENGTH_SHORT).show();
+
+    }
+});
 ...
 ----
 
