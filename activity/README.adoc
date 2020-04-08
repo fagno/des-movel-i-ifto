@@ -473,6 +473,11 @@ image::ratingbar.png[]
 
 O método setOnRatingBarChangeListener() retorna através do parâmetro "rating" o nível selecionado de acordo a quantidade de estrelas.
 
+Atributos importantes do componente:
+- numStars: define o número de itens (estrelas);
+- rating: define o valor padrão do nível classificação;
+- stepSize: define o incremento do nível classificação.
+
 .MainActivity.java
 [source, java]
 ----
@@ -483,13 +488,17 @@ ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener()
     @Override
     public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
         
-        //@param "progress": indica o nível selecionado
+        //@param "rating": indica o nível selecionado
         Toast.makeText(MainActivity.this,String.valueOf(rating),Toast.LENGTH_SHORT).show();
 
     }
 });
 ...
 ----
+
+//=== CardView
+
+//=== Date e Time
 
 == Referências
 
