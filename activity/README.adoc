@@ -524,9 +524,9 @@ Use estas propriedades para personalizar a aparência do widget CardView:
 No modo design você pode adicionar o widget CardView, caso não tenha baixado a dependência o Android Studio irá solicitar. No entato, você pode adicionar a seguinte dependência ao arquivo build.gradle do módulo do app conforme a seguir.
 
 .build.gradle(:app)
-[source, gradle]
+[source, java]
 ----
- dependencies {
+dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
 }
 ----
@@ -569,9 +569,9 @@ Assim, como descrito no exemplo do CardView, no modo design você pode adicionar
 O RecyclerView tem carateristica semelhante ao ListView que você já conhece de exemplos anteriores.
 
 .RecyclerView
-[source, gradle]
+[source, java]
 ----
- dependencies {
+dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 }
 ----
