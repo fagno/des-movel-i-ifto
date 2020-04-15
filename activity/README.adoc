@@ -558,11 +558,11 @@ Para usar o CardView, você precisa adicioná-lo ao arquivo de layout conforme e
 </LinearLayout>
 ----
 
-==== RecyclerView
+=== RecyclerView
 
 Se o app precisa exibir uma lista de rolagem de elementos com base em grandes conjuntos de dados (ou dados que mudam com frequência), use RecyclerView.
 
-===== Dependência
+==== Dependência
 
 Assim, como descrito no exemplo do CardView, no modo design você pode adicionar o widget RecyclerView, caso não tenha baixado a dependência o Android Studio irá solicitar. No entato, você pode adicionar a seguinte dependência ao arquivo build.gradle do módulo do app conforme a seguir.
 
@@ -576,7 +576,7 @@ dependencies {
 }
 ----
 
-===== Adicionar RecyclerView ao layout
+==== Adicionar RecyclerView ao layout
 
 Agora você pode adicionar o RecyclerView ao arquivo de layout. Por exemplo, o layout a seguir usa RecyclerView como a única visualização de todo o layout:
 
@@ -603,7 +603,7 @@ Agora você pode adicionar o RecyclerView ao arquivo de layout. Por exemplo, o l
 </LinearLayout>
 ----
 
-===== Definindo a Activity
+==== Definindo a Activity
 
 Depois de adicionar um widget RecyclerView ao layout, acesse um gerenciador para o objeto, conecte-o a um gerenciador de layout e anexe um adaptador para os dados a serem exibidos:
 
@@ -637,7 +637,7 @@ public class MyActivity extends Activity {
 }
 ----
 
-===== Definindo um adapter
+==== Definindo um adapter
 
 Assim como feito no exemplo de lista customizadas, precisamos definir uma adapter para nosso CardView. Você pode utilizar o exemplo feito no conteúdo sobre ListView Customizadas como referência, pois deve ajudar bastante.
 
