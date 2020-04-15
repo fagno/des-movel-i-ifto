@@ -435,7 +435,7 @@ O método setOnSeekBarChangeListener() retorna através do parâmetro "progress"
 
 Atributos importantes do componente:
 
-- a ropriedade "max" define o valor valor máximo da SeekBar.
+- a propriedade "max" define o valor valor máximo da SeekBar.
 
 .Seekbar
 image::seekbar.png[]
@@ -503,9 +503,199 @@ ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener()
 ...
 ----
 
-//=== CardView
-
 //=== Date e Time
+
+=== CardView
+
+Um layout baseado em cards, permite exibir dados em contêineres com estilo semelhante. Esses contêineres são frequentemente usados em listas para armazenar as informações de cada item. No android, temos a API CardView como uma maneira fácil de mostrar informações dentro de cards que têm uma aparência consistente em toda a plataforma. 
+
+Os cards são uma maneira fácil de conter um grupo de visualizações e, ao mesmo tempo, fornecer um estilo consistente para o contêiner.
+
+Use estas propriedades para personalizar a aparência do widget CardView:
+
+- Para definir o raio do canto nos layouts, use o atributo card_view:cardCornerRadius.
+
+- Para definir o raio do canto no código, use o método CardView.setRadius.
+
+- Para definir a cor do plano de fundo de um card, use o atributo card_view:cardBackgroundColor.
+
+==== Adicionar as dependências
+ 
+No modo design você pode adicionar o widget CardView, caso não tenha baixado a dependência o Android Studio irá solicitar. No entato, você pode adicionar a seguinte dependência ao arquivo build.gradle do módulo do app conforme a seguir.
+
+.build.gradle(:app)
+[source, gradle]
+----
+ dependencies {
+    implementation 'androidx.cardview:cardview:1.0.0'
+}
+----
+
+==== Criar Cards
+
+Para usar o CardView, você precisa adicioná-lo ao arquivo de layout conforme exemplo a seguir. Use-o como um grupo de visualização para conter outras visualizações. Neste exemplo, você deve adicionar ao CardView os componentes que representam as informações dos itens.
+
+.itens_card.xml
+[source, xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- A CardView that contains a TextView -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        card_view:cardCornerRadius="4dp">
+
+        //itens do card
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
+----
+
+==== RecyclerView
+
+Se o app precisa exibir uma lista de rolagem de elementos com base em grandes conjuntos de dados (ou dados que mudam com frequência), use RecyclerView.
+
+===== Dependência
+
+Assim, como descrito no exemplo do CardView, no modo design você pode adicionar o widget RecyclerView, caso não tenha baixado a dependência o Android Studio irá solicitar. No entato, você pode adicionar a seguinte dependência ao arquivo build.gradle do módulo do app conforme a seguir.
+
+O RecyclerView tem carateristica semelhante ao ListView que você já conhece de exemplos anteriores.
+
+.RecyclerView
+[source, gradle]
+----
+ dependencies {
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+}
+----
+
+===== Adicionar RecyclerView ao layout
+
+Agora você pode adicionar o RecyclerView ao arquivo de layout. Por exemplo, o layout a seguir usa RecyclerView como a única visualização de todo o layout:
+
+.itens_card.xml
+[source, xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/myRecyclerView"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"/>
+
+</LinearLayout>
+----
+
+===== Definindo a Activity
+
+Depois de adicionar um widget RecyclerView ao layout, acesse um gerenciador para o objeto, conecte-o a um gerenciador de layout e anexe um adaptador para os dados a serem exibidos:
+
+.MyActivity
+[source, java]
+----
+public class MyActivity extends Activity {
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.my_activity);
+        recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        recyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        // specify an adapter (see also next example)
+        mAdapter = new MyAdapter(myDataset);
+        recyclerView.setAdapter(mAdapter);
+    }
+    // ...
+}
+----
+
+===== Definindo um adapter
+
+Assim como feito no exemplo de lista customizadas, precisamos definir uma adapter para nosso CardView. Você pode utilizar o exemplo feito no conteúdo sobre ListView Customizadas como referência, pois deve ajudar bastante.
+
+Para alimentar todos os seus dados para a lista, você precisa estender a classe RecyclerView.Adapter. Esse objeto cria visualizações para itens e substitui o conteúdo de algumas das visualizações por novos itens de dados quando o item original não está mais visível.
+
+O exemplo de código a seguir mostra uma implementação simples para um conjunto de dados que consiste em uma matriz de strings exibidas usando widgets TextView.
+
+.MyActivity
+[source, java]
+----
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+    private String[] mDataset;
+
+    // Provide a reference to the views for each data item
+    // Complex data items may need more than one view per item, and
+    // you provide access to all the views for a data item in a view holder
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        // each data item is just a string in this case
+        public TextView textView;
+        public MyViewHolder(TextView v) {
+            super(v);
+            textView = v;
+        }
+    }
+
+    // Provide a suitable constructor (depends on the kind of dataset)
+    public MyAdapter(String[] myDataset) {
+        mDataset = myDataset;
+    }
+
+    // Create new views (invoked by the layout manager)
+    @Override
+    public MyAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
+                                                    int viewType) {
+        // create a new view
+        TextView v = (TextView) LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.my_text_view, parent, false);
+        ...
+        MyViewHolder vh = new MyViewHolder(v);
+        return vh;
+    }
+
+    // Replace the contents of a view (invoked by the layout manager)
+    @Override
+    public void onBindViewHolder(MyViewHolder holder, int position) {
+        // - get element from your dataset at this position
+        // - replace the contents of the view with that element
+        holder.textView.setText(mDataset[position]);
+
+    }
+
+    // Return the size of your dataset (invoked by the layout manager)
+    @Override
+    public int getItemCount() {
+        return mDataset.length;
+    }
+}
+----
 
 == Referências
 
@@ -513,4 +703,8 @@ ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener()
 para dispositivos móveis com o Android SDK. 5ª ed. – São Paulo:
 Novatec, 2016.
 
-2. https://developer.android.com/guide/components/activities/activity-lifecycle?hl=pt-br
+1. https://developer.android.com/guide/components/activities/activity-lifecycle?hl=pt-br
+
+1. https://developer.android.com/guide/topics/ui/layout/recyclerview#java
+
+1. https://developer.android.com/guide/topics/ui/layout/cardview
