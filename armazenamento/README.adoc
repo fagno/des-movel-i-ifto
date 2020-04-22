@@ -31,6 +31,50 @@ link:https://fagno.github.io/des-movel-i-ifto/[HOME]
 Fagno Alves Fonseca <fagno.fonseca@ifto.edu.br>
 Mestre em Modelagem Computacional de Sistemas – UFT.
 
-IMPORTANT: MATERIAL EM CONSTRUÇÃO
+== Armazenamento no Android
+
+Embora o armazenamento em banco de dados seja mais comum, o Android permite armazenamento em arquivos salvos na memória interna ou no SD card e também por um sistema de persistência de chave e valor chamado de preferências.
+
+=== SharedPreferences
+
+A classe SharedPreferences permite salvar dados simples no formato de chave e valor. Ela deve ser utilizada para salvar valores pequenos, como tipos primitivos e strings.
+
+O método getSharedPreferences() busca um arquivo de preferência armazenado no dispostivo caso exista. No exemplo a seguir, buscamos pelo arquivo de nome "arquivo", utilizando o modo de leitura privado, indicado no segundo parâmetro. A seguir, buscamos uma String através da chave "nome".
+
+Caso não exista a chave, ao efetuar o clique no botão imprimir, uma String com chave "nome" é criada tendo como valor o texto digitado no EditText.
+
+Após o commit, que confirma a informação a ser salva no arquivo, atualizamos o texto digital no TextView. Comentários dentro do código foram inserido para facilitar o entendimento.
+
+.MainActivity.java
+[source, java]
+----
+include::../codigo/sharedpreference/MainActivity.java[]
+----
+
+
+// O métodos setBoolean(context,chave,valor), setInteger(context,chave,valor) e setString(context,chave,valor) salvam os valores no banco de dados interno do Android, e os métodos getBoolean(context, chave), getInteger(context, chave) e getString(context, chave) leem os valores salvos no banco de dados.
+
+IMPORTANT: Ao salvar um valor com a classe SharedPreferences, é criado um objeto do tipo Editor e depois é chamado o métodos commit(), que efetiva as alterações no arquivo.
+
+A seguir é apresentado o arquivo activity_main.xml criado para o exemplo.
+
+.activity_main.xml
+[source, xml]
+----
+include::../codigo/sharedpreference/activity_main.xml[]
+----
+
+Na figura a seguir, apresentamos a tela de exemplo do aplicativo. Ao fechar o aplicativo e abrir novamente você vai observar que o nome informado ainda permanece visível no campo de impressão. Se você desinstalar o aplicativo, o nome informado não ficará visível, pois o arquivo de preferência deixa de existir.
+
+.Tela do aplicativo
+image::sharedpreferenceexemplo.png[]
+
+== SQLite
+
+WARNING: EM CONSTRUÇÃO
 
 == Referências
+
+1. LECHETA, Ricardo R. Google Android: Aprenda a criar aplicações
+para dispositivos móveis com o Android SDK. 5ª ed. – São Paulo:
+Novatec, 2016.

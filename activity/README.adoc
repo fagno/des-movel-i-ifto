@@ -580,7 +580,7 @@ dependencies {
 
 Agora você pode adicionar o RecyclerView ao arquivo de layout. Por exemplo, o layout a seguir usa RecyclerView como a única visualização de todo o layout:
 
-.itens_card.xml
+.activity_main.xml
 [source, xml]
 ----
 <?xml version="1.0" encoding="utf-8"?>
