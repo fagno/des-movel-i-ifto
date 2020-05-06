@@ -297,6 +297,16 @@ Contém arquivos do usuário salvos no armazenamento externo do usuário (imagen
 
 IMPORTANT: nem todos os arquivos em um dispositivo de hardware ficam visíveis no Device File Explorer. Por exemplo, no diretório data/data/, as entradas correspondentes aos apps do dispositivo que não são depuráveis não podem ser expandidas no Device File Explorer.
 
+=== Visualizando o banco de dados com um cliente SQLite
+
+Caso você deseja utilizar algum software cliente de SQLite para visualizar o conteúdo do banco de dados, siga os passos do item 2.8 e baixe os arquivos da pasta databases conforme a seguir.
+
+image::savefiledb.gif[]
+
+Após baixar os arquivos, abra o seu cliente SQLite, neste exemplo estou utilizando o DB Browser for SQLite, ferramenta que vocễ baixar através do link nas referências do material.
+
+
+
 == Referências
 
 1. LECHETA, Ricardo R. Google Android: Aprenda a criar aplicações
@@ -306,3 +316,5 @@ Novatec, 2016.
 2. https://developer.android.com/training/data-storage/sqlite
 
 3. https://developer.android.com/studio/debug/device-file-explorer
+
+4. https://sqlitebrowser.org/
