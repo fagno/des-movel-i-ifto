@@ -307,11 +307,11 @@ Após baixar os arquivos, abra o seu cliente SQLite, neste exemplo estou utiliza
 
 Ao abrir o arquivo do banco de dados, você irá ver as inforamções do banco conforme figura a seguir.
 
-image::estruturabanco.png[]
+image::estruturabanco.png[width=682,height=394]
 
 A próxima figura apresenta os dados da tabela, funcionalidade disponível através do DB Browser.
 
-image::navegardadostabela.png[]
+image::navegardadostabela.png[width=682,height=394]
 
 == Referências
 
