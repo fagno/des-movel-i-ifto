@@ -260,6 +260,41 @@ Após definir nossa classe BDsqlite.java, no método onCreate() da sua Activity 
 
 ----
 
+=== Ver os arquivos no dispositivo com o Device File Explorer
+
+O Device File Explorer permite que você veja, copie e exclua arquivos em um dispositivo Android. Isso é útil ao examinar arquivos criados pelo app ou se você quiser transferir arquivos de e para um dispositivo.
+
+IMPORTANT: a maioria dos dados do dispositivo não fica visível, a menos que você use um dispositivo com acesso root ou um emulador com uma imagem do sistema Android padrão (AOSP), e não uma API do Google ou uma imagem de sistema do Google Play. Ative a depuração USB quando usar um dispositivo conectado.
+
+Para trabalhar com o sistema de arquivos de um dispositivo, faça o seguinte:
+
+1. Clique em View > Tool Windows > Device File Explorer ou no botão Device File Explorer  na barra da janela de ferramentas para abrir o Device File Explorer.
+2. Selecione um dispositivo na lista suspensa.
+3. Interaja com o conteúdo do dispositivo na janela do File Explorer. Clique com o botão direito do mouse em um arquivo ou diretório para criar um novo, salvá-lo na sua máquina, fazer upload, excluir ou sincronizar. Clique duas vezes em um arquivo para abri-lo no Android Studio.
+
+O Android Studio salvará os arquivos que você abrir dessa maneira em um diretório temporário fora do seu projeto. Se você fizer modificações em um arquivo aberto com o Device File Explorer e quiser salvá-las no dispositivo, será necessário fazer o upload manual da versão modificada do arquivo no dispositivo.
+
+.Janela da ferramenta Device File Explorer
+image::devicefileexplorer.png[]
+
+Ao analisar os arquivos de um dispositivo, os seguintes diretórios são particularmente úteis:
+
+[source, xml]
+----
+data/data/app_name/
+----
+
+Contém arquivos de dados para seu app armazenados no armazenamento interno
+
+[source, xml]
+----
+sdcard/
+----
+
+Contém arquivos do usuário salvos no armazenamento externo do usuário (imagens etc.)
+
+IMPORTANT: nem todos os arquivos em um dispositivo de hardware ficam visíveis no Device File Explorer. Por exemplo, no diretório data/data/, as entradas correspondentes aos apps do dispositivo que não são depuráveis não podem ser expandidas no Device File Explorer.
+
 == Referências
 
 1. LECHETA, Ricardo R. Google Android: Aprenda a criar aplicações
@@ -267,3 +302,5 @@ para dispositivos móveis com o Android SDK. 5ª ed. – São Paulo:
 Novatec, 2016.
 
 2. https://developer.android.com/training/data-storage/sqlite
+
+3. https://developer.android.com/studio/debug/device-file-explorer
