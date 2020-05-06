@@ -303,9 +303,15 @@ Caso você deseja utilizar algum software cliente de SQLite para visualizar o co
 
 image::savefiledb.gif[]
 
-Após baixar os arquivos, abra o seu cliente SQLite, neste exemplo estou utilizando o DB Browser for SQLite, ferramenta que vocễ baixar através do link nas referências do material.
+Após baixar os arquivos, abra o seu cliente SQLite, neste exemplo estou utilizando o DB Browser for SQLite, ferramenta que você pode baixar através do endereço https://sqlitebrowser.org/.
 
+Ao abrir o arquivo do banco de dados, você irá ver as inforamções do banco conforme figura a seguir.
 
+image::estruturabanco.png[]
+
+A próxima figura apresenta os dados da tabela, funcionalidade disponível através do DB Browser.
+
+image::navegardadostabela.png[]
 
 == Referências
 
