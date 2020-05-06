@@ -291,6 +291,8 @@ Contém arquivos de dados para seu app armazenados no armazenamento interno
 sdcard/
 ----
 
+IMPORTANT: O banco de dados fica no diretório data/data/app_name/databases.
+
 Contém arquivos do usuário salvos no armazenamento externo do usuário (imagens etc.)
 
 IMPORTANT: nem todos os arquivos em um dispositivo de hardware ficam visíveis no Device File Explorer. Por exemplo, no diretório data/data/, as entradas correspondentes aos apps do dispositivo que não são depuráveis não podem ser expandidas no Device File Explorer.
