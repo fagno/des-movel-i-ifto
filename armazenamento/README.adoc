@@ -79,11 +79,13 @@ As APIs necessárias para usar um banco de dados no Android estão disponíveis 
 
 IMPORTANT: Um banco de dados é visível somente a aplicação que o criou.
 
+=== Criando um Banco de Dados
+
 Da mesma forma que você salva arquivos no armazenamento interno do dispositivo, o Android armazena seu banco de dados na pasta privada do app. Seus dados ficam protegidos porque, por padrão, essa área não pode ser acessada por outros apps nem pelo usuário.
 
 A classe SQLiteOpenHelper contém um conjunto de APIs útil para gerenciar seu banco de dados. Quando você usa essa classe para conseguir referências para o banco de dados, o sistema realiza operações de execução possivelmente longas para criar e atualizar o banco de dados apenas quando necessário e não durante a inicialização do app. Você só precisa chamar getWritableDatabase() ou getReadableDatabase().
 
-A seguir iremos definir a classe BDsqlite.java, que tem métodos responsáveis por criar o banco de dados, tabelas e demais operações no banco. Após apresentar o código da classe, será apresentado um descrição do métodos criados para efetuar as operações realizadas no banco.
+A seguir iremos definir a classe BDsqlite.java, que tem métodos responsáveis por criar o banco de dados, tabelas e demais operações no banco.
 
 .BDsqlite.java
 [source, java]
@@ -91,13 +93,42 @@ A seguir iremos definir a classe BDsqlite.java, que tem métodos responsáveis p
 include::../codigo/sqlite/BDsqlite.java[]
 ----
 
+Complemente a classe BDsqlite com o métodos descritos a seguir.
+
 === Inserindo informações no banco de dados
 
-No método inserirDados(), o primeiro argumento de insert() é simplesmente o nome da tabela.
+No método inserirDados() a seguir, o primeiro argumento de insert() é simplesmente o nome da tabela.
 
 O segundo argumento diz ao framework o que fazer em casos em que os ContentValues estão vazios (ou seja, você não put nenhum valor). Se você especificar o nome de uma coluna, o framework incluirá uma linha e definirá o valor dessa coluna como nula. Se você especificar null, como nesse exemplo de código, o framework não incluirá uma linha quando não houver valores.
 
 Os métodos insert() retornam o código da linha recém-criada ou, caso haja um erro ao inserir os dados, retornarão -1. Isso pode acontecer caso haja um conflito com os dados preexistentes no banco de dados.
+
+.BDsqlite.java
+[source, java]
+----
+...
+/**
+     * Responsável por INSERIR DADOS NO BANCO
+     * Ao executar o método getWritableDatabase(), o método onCreate() é executado.
+     * O método getWritableDatabase() é utilizado para as operações de insert, delete e update.
+     */
+    public void inserirDados(){
+
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("NOME", "Pessoa 1"); // COLUNA / VALOR
+        values.put("IDADE", "22");
+        db.insert("TB_PESSOA",null,values);
+
+        /**
+         * O método insert() retorna o código da linha recém-criada ou, caso haja um erro ao inserir os dados, retornarão -1.
+         * Isso pode acontecer caso haja um conflito com os dados preexistentes no banco de dados.
+         */
+        //Long id = db.insert("TB_PESSOA",null, values);
+
+    }
+----
 
 === Lendo informações do banco de dados
 
@@ -107,11 +138,69 @@ Os terceiro e quarto argumentos (selection e selectionArgs) são combinados para
 
 Para ver uma linha no cursor, use um dos métodos de movimento do Cursor, que sempre precisam ser chamados antes de iniciar a leitura de valores. Como o cursor começa na posição -1, ao chamar moveToNext(), a "posição de leitura" é colocada na primeira entrada nos resultados e retorna se o cursor já passou da última entrada no conjunto de resultados. Para cada linha, é possível ler o valor de uma coluna chamando um dos métodos "get" do cursor Cursor, por exemplo, getString() ou getLong(). Para cada um dos métodos "get", é necessário passar a posição de índice da coluna desejada, que pode ser encontrada chamando getColumnIndex() ou getColumnIndexOrThrow(). Quando a iteração dos resultados for concluída, chame close() no cursor para liberar seus recursos. Por exemplo, o exemplo a seguir mostra como conseguir todos os códigos de itens armazenados em um cursor e adicioná-los a uma lista
 
+.BDsqlite.java
+[source, java]
+----
+...
+    /**
+     * Responsável por CONSULTAR DADOS NO BANCO
+     * Para consultar dados, utilizamos o método getReadableDatabase()
+     */
+    public List<Pessoa> consultarDados(){
+        SQLiteDatabase dbselec = getReadableDatabase();
+
+        String[] colunas = {
+                "ID",
+                "NOME",
+                "IDADE"
+        };
+        Cursor cursor = dbselec.query(
+                "TB_PESSOA",   // The table to query
+                colunas,       // The array of columns to return (pass null to get all)
+                null,          // The columns for the WHERE clause
+                null,          // The values for the WHERE clause
+                null,          // don't group the rows
+                null,          // don't filter by row groups
+                null           // The sort order
+        );
+
+        List<Pessoa> pessoas = new ArrayList<>();
+        Pessoa p=new Pessoa();
+        while(cursor.moveToNext()) {
+            p.setId(cursor.getInt(cursor.getColumnIndex("ID")));
+            p.setNome(cursor.getString(cursor.getColumnIndex("NOME")));
+            p.setIdade(Integer.parseInt(cursor.getString(cursor.getColumnIndex("IDADE"))));
+            pessoas.add(p);
+        }
+
+        cursor.close();
+        return pessoas;
+    }
+----
+
 === Excluindo informações do banco de dados
 
 Para excluir linhas de uma tabela, é necessário fornecer critérios de seleção que identifiquem as linhas ao método delete(). O mecanismo funciona da mesma forma que os argumentos seleção para o método query(). Ele divide a especificação de seleção em uma cláusula de seleção e em argumentos de seleção. A cláusula define as colunas a serem verificadas e permite combinar testes de coluna. Os argumentos são valores para testes comparativos que são vinculados à cláusula. Como o resultado não é processado da mesma forma que uma instrução SQL comum, ele é imune à injeção de SQL.
 
 O valor de retorno para o método delete() indica o número de linhas que foram excluídas do banco de dados.
+
+.BDsqlite.java
+[source, java]
+----
+...
+    /**
+     * Responsável por EXCLUIR DADOS NO BANCO
+     */
+    public void excluir(int id){
+        SQLiteDatabase db = getReadableDatabase();
+        // Define 'where' part of query.
+        String selection = "ID LIKE ?";
+        // Specify arguments in placeholder order.
+        String[] selectionArgs = { String.valueOf(id) };
+        // Issue SQL statement.
+        db.delete("TB_PESSOA", selection, selectionArgs);
+    }
+----
 
 === Atualizando o banco de dados
 
@@ -120,6 +209,33 @@ Quando precisar modificar um subconjunto dos valores do banco de dados, use o m�
 A atualização da tabela combina a sintaxe ContentValues de insert() com a sintaxe WHERE de delete().
 
 O valor de retorno do método update() é o número de linhas afetadas no banco de dados.
+
+.BDsqlite.java
+[source, java]
+----
+...
+/**
+     * Responsável por ATUALIZAR DADOS NO BANCO
+     */
+    public void update(int id, String coluna, String valor){
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(coluna, valor);
+
+        // Which row to update, based on the title
+        String selection = "ID LIKE ?";
+        String[] selectionArgs = { String.valueOf(id) };
+
+        int count = db.update(
+            "TB_PESSOA",
+            values,
+            selection,
+            selectionArgs);
+    }
+
+----
+
 
 === Conexão persistente do banco de dados
 
