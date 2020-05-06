@@ -71,10 +71,89 @@ image::sharedpreferenceexemplo.png[]
 
 == SQLite
 
-WARNING: EM CONSTRUÇÃO
+Salvar dados em um banco de dados é ideal para dados estruturados ou que se repetem, por exemplo, os dados de contato. O Android tem suporte ao SQLite, um leve e poderoso banco de dados.
+
+Basicamente, podemos dizer que existem duas maneiras de criar o banco de dados no aplicativo. Ou utilizamos a API e escrevemos os scripts SQL para criar as tabelas, ou criamos o banco de dados com um ferramenta externa e depois importamos o banco de dados já pronto no projeto. Em nosso exemplo, iremos utilizar a primeira opção.
+
+As APIs necessárias para usar um banco de dados no Android estão disponíveis no pacote android.database.sqlite.
+
+IMPORTANT: Um banco de dados é visível somente a aplicação que o criou.
+
+Da mesma forma que você salva arquivos no armazenamento interno do dispositivo, o Android armazena seu banco de dados na pasta privada do app. Seus dados ficam protegidos porque, por padrão, essa área não pode ser acessada por outros apps nem pelo usuário.
+
+A classe SQLiteOpenHelper contém um conjunto de APIs útil para gerenciar seu banco de dados. Quando você usa essa classe para conseguir referências para o banco de dados, o sistema realiza operações de execução possivelmente longas para criar e atualizar o banco de dados apenas quando necessário e não durante a inicialização do app. Você só precisa chamar getWritableDatabase() ou getReadableDatabase().
+
+A seguir iremos definir a classe BDsqlite.java, que tem métodos responsáveis por criar o banco de dados, tabelas e demais operações no banco. Após apresentar o código da classe, será apresentado um descrição do métodos criados para efetuar as operações realizadas no banco.
+
+.BDsqlite.java
+[source, java]
+----
+include::../codigo/sqlite/BDsqlite.java[]
+----
+
+=== Inserindo informações no banco de dados
+
+No método inserirDados(), o primeiro argumento de insert() é simplesmente o nome da tabela.
+
+O segundo argumento diz ao framework o que fazer em casos em que os ContentValues estão vazios (ou seja, você não put nenhum valor). Se você especificar o nome de uma coluna, o framework incluirá uma linha e definirá o valor dessa coluna como nula. Se você especificar null, como nesse exemplo de código, o framework não incluirá uma linha quando não houver valores.
+
+Os métodos insert() retornam o código da linha recém-criada ou, caso haja um erro ao inserir os dados, retornarão -1. Isso pode acontecer caso haja um conflito com os dados preexistentes no banco de dados.
+
+=== Lendo informações do banco de dados
+
+Para ler informações de um banco de dados, use o método query(), transmitindo os seus critérios de seleção e as colunas desejadas. O método combina elementos de insert() e update(), mas a lista de colunas define os dados a serem buscados (a "projeção"), em vez dos dados a serem inseridos. Os resultados da consulta são retornados em um objeto Cursor.
+
+Os terceiro e quarto argumentos (selection e selectionArgs) são combinados para criar uma cláusula WHERE. Como os argumentos são fornecidos separados da consulta de seleção, eles se perdem antes de serem combinados. Isso torna suas declarações de seleção imunes à injeção de SQL.
+
+Para ver uma linha no cursor, use um dos métodos de movimento do Cursor, que sempre precisam ser chamados antes de iniciar a leitura de valores. Como o cursor começa na posição -1, ao chamar moveToNext(), a "posição de leitura" é colocada na primeira entrada nos resultados e retorna se o cursor já passou da última entrada no conjunto de resultados. Para cada linha, é possível ler o valor de uma coluna chamando um dos métodos "get" do cursor Cursor, por exemplo, getString() ou getLong(). Para cada um dos métodos "get", é necessário passar a posição de índice da coluna desejada, que pode ser encontrada chamando getColumnIndex() ou getColumnIndexOrThrow(). Quando a iteração dos resultados for concluída, chame close() no cursor para liberar seus recursos. Por exemplo, o exemplo a seguir mostra como conseguir todos os códigos de itens armazenados em um cursor e adicioná-los a uma lista
+
+=== Excluindo informações do banco de dados
+
+Para excluir linhas de uma tabela, é necessário fornecer critérios de seleção que identifiquem as linhas ao método delete(). O mecanismo funciona da mesma forma que os argumentos seleção para o método query(). Ele divide a especificação de seleção em uma cláusula de seleção e em argumentos de seleção. A cláusula define as colunas a serem verificadas e permite combinar testes de coluna. Os argumentos são valores para testes comparativos que são vinculados à cláusula. Como o resultado não é processado da mesma forma que uma instrução SQL comum, ele é imune à injeção de SQL.
+
+O valor de retorno para o método delete() indica o número de linhas que foram excluídas do banco de dados.
+
+=== Atualizando o banco de dados
+
+Quando precisar modificar um subconjunto dos valores do banco de dados, use o método update().
+
+A atualização da tabela combina a sintaxe ContentValues de insert() com a sintaxe WHERE de delete().
+
+O valor de retorno do método update() é o número de linhas afetadas no banco de dados.
+
+=== Conexão persistente do banco de dados
+
+Visto que é caro chamar getWritableDatabase() e getReadableDatabase() quando o banco de dados está fechado, deixe a conexão do banco de dados aberta durante todo o período de tempo em que possivelmente será necessário acessá-lo. Normalmente, é ideal fechar o banco de dados no onDestroy() da atividade de chamada.
+
+[source, java]
+----
+
+    @Override
+    protected void onDestroy() {
+        dbHelper.close();
+        super.onDestroy();
+    }
+
+----
+
+=== Executando a aplicação
+
+Após definir nossa classe BDsqlite.java, no método onCreate() da sua Activity crie uma instância da classeBDsqlite.java e execute os métodos.
+
+.MainActivity.java
+[source, java]
+----
+
+    BDsqlite bd = new BDsqlite(this);
+    bd.inserirDados();
+    ...
+
+----
 
 == Referências
 
 1. LECHETA, Ricardo R. Google Android: Aprenda a criar aplicações
 para dispositivos móveis com o Android SDK. 5ª ed. – São Paulo:
 Novatec, 2016.
+
+2. https://developer.android.com/training/data-storage/sqlite
