@@ -107,7 +107,7 @@ Os métodos insert() retornam o código da linha recém-criada ou, caso haja um 
 [source, java]
 ----
 ...
-/**
+    /**
      * Responsável por INSERIR DADOS NO BANCO
      * Ao executar o método getWritableDatabase(), o método onCreate() é executado.
      * O método getWritableDatabase() é utilizado para as operações de insert, delete e update.
@@ -120,12 +120,6 @@ Os métodos insert() retornam o código da linha recém-criada ou, caso haja um 
         values.put("NOME", "Pessoa 1"); // COLUNA / VALOR
         values.put("IDADE", "22");
         db.insert("TB_PESSOA",null,values);
-
-        /**
-         * O método insert() retorna o código da linha recém-criada ou, caso haja um erro ao inserir os dados, retornarão -1.
-         * Isso pode acontecer caso haja um conflito com os dados preexistentes no banco de dados.
-         */
-        //Long id = db.insert("TB_PESSOA",null, values);
 
     }
 ----
@@ -214,7 +208,7 @@ O valor de retorno do método update() é o número de linhas afetadas no banco 
 [source, java]
 ----
 ...
-/**
+    /**
      * Responsável por ATUALIZAR DADOS NO BANCO
      */
     public void update(int id, String coluna, String valor){
