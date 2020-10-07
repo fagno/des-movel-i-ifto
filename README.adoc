@@ -33,7 +33,7 @@ Mestre em Modelagem Computacional de Sistemas / UFT.
 1. link:conceitos/[Conceitos Básicos]
 1. link:activity/[Activity, Action Bar, Layouts e Interface]
 1. link:armazenamento/[Armazenamento no Android]
-1. link:fragments/[Fragments]
+//1. link:fragments/[Fragments]
 
 IMPORTANT: MATERIAL EM CONSTRUÇÃO
 
