@@ -110,6 +110,39 @@ public Context getActivity(){
 }
 ----
 
+=== Retornar para a tela anterior
+
+Sempre que uma activity é chamada, temos a necessidade de voltar para a tela anterior. Para adicionar o botão de voltar do Android, utilizamos o método `getSupportActionBar().setDisplayHomeAsUpEnabled(true)`.
+
+Ao clicar no botão no botão ele vai disparar a ação de `menu` com o identificador `android.R.id.home`. Implemente o método `onOptionsItemSelected()` do exemplo a seguir para implementar a ação.
+
+.botão de voltar
+[source, java]
+----
+...
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_exemplo);
+
+    getSupportActionBar().setDisplayHomeAsUpEnabled( true );
+
+}
+
+@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+        //identificar a ação de voltar a tela
+        case android.R.id.home:
+            //encerra a activity
+            finish();
+            break;
+    }
+
+    return super.onOptionsItemSelected( item );
+}
+----
+
 === Enviando dados para outra tela
 
 Com a classe Bundle é possível enviar dados de uma activity para outra usando a estrutura chave e valor. No entanto, neste tutorial irei apresentar como fazer tal tarefa utilizando a classe Intent devido já está sendo utilizada durante a navegação entre telas.
@@ -166,8 +199,6 @@ A instrução a seguir define um título para a activity.
 ----
 getSupportActionBar().setTitle("Home");
 ----
-
-//=== Voltar para a tela anterior
 
 //== Layouts no Android
 
