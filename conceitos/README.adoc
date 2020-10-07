@@ -120,10 +120,9 @@ No arquivo app/build.gradle você configura a versão do aplicativo e também a 
 
 No final do arquivo são declaradas as dependências do projeto. 
 
-Todo aplicativo (apk) deve ser assinado com um certificado digital antes de ser instalado no dispositivo. Por padrão o sistema de build do gradle compila o projeto no modle debug e release.
+Todo aplicativo (apk) deve ser assinado com um certificado digital antes de ser instalado no dispositivo. Por padrão o sistema de build do gradle compila o /projeto no modle debug e release.
 
-O modo debug é utilizado durante o desenvolvimento, e o aplicativo é assinado com o certificado digital de desenvolvimento, o qual é criado automaticamente pelo
-Android Studio e fica na pasta ~/.android/debug.keystore.
+O modo debug é utilizado durante o desenvolvimento, e o aplicativo é assinado com o certificado digital de desenvolvimento, o qual é criado automaticamente pelo Android Studio e fica na pasta ~/.android/debug.keystore.
 
 O modo release é utilizado para publicar o aplicativo no Google Play e deve ser assinado com outro certificado, o qual você precisa criar.
 

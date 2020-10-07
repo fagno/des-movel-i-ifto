@@ -173,7 +173,126 @@ getSupportActionBar().setTitle("Home");
 
 == Interface
 
-//=== Mensagens
+=== TextView
+
+Um elemento da interface do usuário que exibe texto para o usuário. O exemplo de código a seguir mostra um uso típico, com um layout XML e código para modificar o conteúdo da visualização de texto.
+
+.TextView
+[source, xml]
+----
+<TextView
+        android:id="@+id/textView1"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="TextView"/>
+----
+
+Podemos alterar o texto por códio java conforme a seguir.
+
+.Alterando valor do atributo `text` do EditText
+[source, java]
+----
+...
+textView1.setText("Olá mundo!");
+----
+
+=== EditText
+
+Um elemento da interface do usuário para inserir e modificar texto. Ao definir um widget de edição de texto, você deve especificar o atributo inputType. Por padrão, para entrada de texto simples, o atributo `inputType` é definido como `textPersonName`.
+
+.EditText
+[source, xml]
+----
+ <EditText
+     android:id="@+id/editTextTextPersonName1"
+     android:layout_height = "wrap_content"
+     android:layout_width = "match_parent"
+     android:inputType = "textPersonName" />
+----
+
+A escolha do tipo de entrada configura o tipo de teclado mostrado, os caracteres aceitáveis ​​e a aparência do texto de edição. Por exemplo, se você deseja aceitar um número secreto, como um pino exclusivo ou número de série, pode definir inputType como "numericPassword". Um inputType de "numericPassword" resulta em um texto de edição que aceita apenas números, mostra um teclado numérico quando focalizado e mascara o texto inserido para privacidade.
+
+Para ler dados de uma caixa de texto, utilizamos o método getText(). No entanto, para ter um retorno do tipo String utilizamos o método toString() que convete os dados para String conforme o exemplo a seguir.
+
+.Recuperando valores de uma caixa de texto
+[source, java]
+----
+...
+String texto = editTextTextPersonName1.getText().toString();
+----
+
+=== Mensagens
+
+==== Notificações toast
+
+Uma notificação toast fornece um feedback simples sobre uma operação em uma pequena janela pop-up. Ele só ocupa a quantidade de espaço necessária para a mensagem, e a atividade atual continua visível e interativa. Notificações toast desaparecem automaticamente após um tempo limite.
+
+Por exemplo, clicar em Enviar em um e-mail aciona uma notificação toast "Enviando mensagem…", conforme exibido na captura de tela a seguir.
+
+.Mensagem Toast
+image::toast.png[]
+
+Primeiro, instancie um objeto Toast com um dos métodos makeText(). Esse método usa três parâmetros: o app Context, a mensagem de texto e a duração da notificação toast. Ele retorna um objeto Toast devidamente inicializado. Você pode exibir a notificação toast com show(), conforme mostrado no exemplo a seguir.
+
+.exemplo Toast
+[source, java]
+----
+   Toast toast = Toast.makeText(context, text, duration);
+   toast.show();
+----
+
+Também é possível encadear seus métodos e evitar se prender ao objeto Toast, desta forma:
+
+.exemplo Toast
+[source, java]
+----
+    Toast.makeText(context, text, duration).show();
+----
+
+==== AlertDialog
+
+É uma caixa de diálogo que possui um título, área de conteúdo e botões de ação.
+
+1. Título: É opcional e deve ser usado somente quando a área do conteúdo estiver ocupada por uma mensagem detalhada, uma lista ou um layout personalizado. 
+
+1. Área do conteúdo: Pode exibir uma mensagem, uma lista ou outro layout personalizado.
+
+1. Botões de ação: Não deve haver mais de três botões em uma caixa de diálogo.
+
+Há três botões de ação que podem ser adicionados:
+
+- Positivo: É o que se deve usar para aceitar e continuar a ação (a ação "OK").
+
+- Negativo: É o que se deve usar para cancelar a ação.
+
+- Neutro: É o que se deve usar quando houver a opção de o usuário não querer continuar a ação, mas não necessariamente cancelá-la. Ele aparece entre os botões positivo e negativo. Por exemplo, a ação pode ser “Notifique-me mais tarde”.
+
+A seguir é apresentado um exemplo de um AlertDialog.
+
+.exemplo AlertDialog
+[source, java]
+----
+...
+AlertDialog dialog = new AlertDialog.Builder(getActivity()).create();
+    dialog.setTitle("Alerta");
+    dialog.setMessage("Olá turma!");
+    dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Ok", new DialogInterface.OnClickListener(){
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+        }
+    });
+    dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancelar", new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialogInterface, int i) {
+        }
+    });
+    dialog.setButton(DialogInterface.BUTTON_NEUTRAL, "Neutro", new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialogInterface, int i) {
+        }
+    });
+    dialog.show();
+----
 
 === Buttons
 
@@ -705,6 +824,6 @@ Novatec, 2016.
 
 1. https://developer.android.com/guide/components/activities/activity-lifecycle?hl=pt-br
 
-1. https://developer.android.com/guide/topics/ui/layout/recyclerview#java
+1. https://developer.android.com/guide/topics/ui/layout
 
-1. https://developer.android.com/guide/topics/ui/layout/cardview
+1. https://developer.android.com/guide
