@@ -516,7 +516,7 @@ Para carregar uma imagem em um ImageView utilize o método setImageResource() da
 ----
 ...
 ImageView imageView = findViewById(R.id.imageView);
-imageView.setsetImageResource( id );
+imageView.setImageResource( id );
 ...
 ----
 
