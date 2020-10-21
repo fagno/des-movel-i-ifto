@@ -392,6 +392,234 @@ public void acaobotao(View view) {
 }
 ----
 
+=== ListView
+
+Um ListView é um Widget que mostra itens em uma lista de rolagem vertical.
+
+Podemos incluir um listview em nosso layout utilizando a paleta de Widgets ou através de código XML.
+
+IMPORTANT: O RecyclerView é uma “evolução” da ListView e será apresentado nos próximos exemplos.
+
+==== ListView Simples
+
+.activity_main.xml
+[source, xml]
+----
+<ListView
+        android:id="@+id/lsvAlunos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        ...
+    </ListView>
+----
+
+Após definir o nosso layout, vamos agora definir nossa activity conforme a seguir.
+
+.MainActivity.java
+[source, java]
+----
+...
+public class ListaSimplesActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+
+    ListView listView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_lista_simples);
+
+        listView = findViewById(R.id.lsvAlunos);
+
+        List<String> alunos = new ArrayList();
+        alunos.add("Aluno 1");
+        alunos.add("Aluno 2");
+        alunos.add("Aluno 3");
+
+        ArrayAdapter adapter = new ArrayAdapter(this,
+                android.R.layout.simple_list_item_1, alunos);
+        listView.setAdapter(adapter);
+
+    }
+}
+----
+
+O resultado do exemplo anterior é apresentado na figura a seguir.
+
+.ListView simples
+image::listview-simples.png[]
+
+Para definir ações de click nos itens da lista, sobreescreva o método `onItemClick()` conforme a seguir. 
+
+[source,java]
+----
+...
+@Override
+public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    //identifica o objeto da lista pelo "position" na ação do click
+    String nome = (String) parent.getAdapter().getItem(position);
+    Toast.makeText(this, nome, Toast.LENGTH_SHORT).show();
+}
+----
+
+Por fim, adicione no método onCreate() a referência ao método `onItemClick()` através do listView.
+
+[source,java]
+----
+...
+listView.setOnItemClickListener(this);
+----
+
+==== ListView Customizado
+
+Neste exemplo de lista customizada, vamos personalizar uma ListView de modo que cada item da lista tenha os dados que você desejar, dando uma maior flexibilidade em nossos exemplos.
+
+Para criar uma lista customizada vamos definir um array de objetos referente ao item da lista, criar um adaptador que vai ficar responsável por atualizar os dados na tela e definir o adaptador para o ListView.
+
+Vamos iniciar definindo uma classe para representar o objeto Aluno conforme a seguir.
+
+[source,java]
+----
+public class Aluno{
+
+    private String nome;
+    private double nota1;
+    private double nota2;
+
+    //gets e sets
+}
+----
+
+Agora vamos definir nosso layout que vai apresentar os dados de cada item da lista, neste exemplo, os dados do(s) Aluno(s).
+
+[source,xml]
+----
+...
+<TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+...
+----
+
+No nosso Layout principal da nossa Activity, devemos apenas definir o ListView, neste exemplo nomeado como `activity_aula211020.xml`.
+
+Precisamos então definir nosso Adapter nomeado como `AlunoAdapter`, responsável por atualizar os dados na nossa tela.
+
+[source, java]
+----
+...
+public class AlunoAdapter extends BaseAdapter {
+
+    LayoutInflater inflater;
+    List<Aluno> alunos;
+
+    //construtor 
+    public AlunoAdapter(Context context, List<Aluno> alunos) {
+        this.inflater = LayoutInflater.from(context);
+        this.alunos = alunos;
+    }
+
+    @Override
+    public int getCount() {
+        return alunos.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return alunos.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+
+        //identifica o item(objeto aluno) da lista através do "position"
+        Aluno aluno = alunos.get(position);
+        //infla o layout "itens_lista_customizada_aluno" para referênciar/receber o item
+        convertView = inflater.inflate(R.layout.item_lista_simples_adapter,null);
+        //aponta qual dado o componente do layout vai receber
+        ((TextView)convertView.findViewById(R.id.textView)).setText(aluno.getNome());
+        ((TextView)convertView.findViewById(R.id.textView2)).setText(String.valueOf(aluno.getNota1()));
+        ((TextView)convertView.findViewById(R.id.textView3)).setText(String.valueOf(aluno.getNota2()));
+
+        return convertView;
+    }
+}
+----
+
+Por fim, vamos definir o código necessário em nossa activity para finalizar nosso exemplo. A seguir, fazemos referência ao nosso listView, definimos nossos objetos e definimos nosso adaptador para o ListView.
+
+[source,java]
+----
+public class aula211020 extends AppCompatActivity {
+
+    ListView listView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_aula211020);
+
+        //faz referência ao ListView do layout "activity_lista_customizada"
+        listView = findViewById(R.id.lsvAlunos);
+        //define uma lista de alunos
+        List<Aluno> alunos = new ArrayList<>();
+        //cria e inicializa os dados dos alunos
+        Aluno a1 = new Aluno("Aluno 1",9.5,6.8);
+        Aluno a2 = new Aluno("Aluno 2",8.5,6.8);
+        Aluno a3 = new Aluno("Aluno 3",7.5,8.8);
+        Aluno a4 = new Aluno("Aluno 4",6.5,7.8);
+
+        //add alunos na lista
+        alunos.add(a1);
+        alunos.add(a2);
+        alunos.add(a3);
+        alunos.add(a4);
+
+        AlunoAdapter alunoAdapter = new AlunoAdapter(this,alunos);
+        listView.setAdapter(alunoAdapter);
+    }
+}
+----
+
+O resultado deste exemplo é apresentado na figura a seguir.
+
+image::listview-customizado.png[]
+
 === CheckBox
 
 O Checkbox permite criar uma caixa de marcação múltipla. Alguns métodos no uso do CheckBox se faz importante. Por exemplo, para verificar se o checkbox está marcado ou não, utilize o método isChecked().
