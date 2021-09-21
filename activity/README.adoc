@@ -1099,6 +1099,6 @@ Novatec, 2016.
 
 1. https://developer.android.com/guide/components/activities/activity-lifecycle?hl=pt-br
 
-1. https://developer.android.com/guide/topics/ui/layout
+//1. https://developer.android.com/guide/topics/ui/layout
 
 1. https://developer.android.com/guide
