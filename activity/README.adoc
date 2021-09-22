@@ -643,7 +643,7 @@ boolean valor = check.isChecked();
 
 Para imprimir o valor "text" do checkbox utilize o método getText().
 
-Neste link:https://developer.android.com/guide/topics/ui/controls/checkbox[link] é apresentado um exemplo prático de uso do CheckBox.
+Neste link:https://developer.android.com/guide/topics/ui/controls/checkbox[link] é apresentado um exemplo de uso do CheckBox.
 
 === RadioButton
 
@@ -660,9 +660,7 @@ if(idRBSelecionado > 0){
 }
 ----
 
-Neste link:https://developer.android.com/guide/topics/ui/controls/radiobutton[link] é apresentado um exemplo prático de uso do RadioButton.
-
-
+Neste link:https://developer.android.com/guide/topics/ui/controls/radiobutton[link] é apresentado um exemplo de uso do RadioButton.
 
 === Spinner
 
