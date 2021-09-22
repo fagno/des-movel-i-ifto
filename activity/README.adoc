@@ -643,6 +643,8 @@ boolean valor = check.isChecked();
 
 Para imprimir o valor "text" do checkbox utilize o método getText().
 
+Neste link:https://developer.android.com/guide/topics/ui/controls/checkbox[link] é apresentado um exemplo prático de uso do CheckBox.
+
 === RadioButton
 
 O componente Radio Button permite selecionar apenas uma única opção de uma lista. A classe RadioGroup define um grupo que contém a lista de opções, na qual, cada opção é representada por um RadioButton.
@@ -657,6 +659,10 @@ if(idRBSelecionado > 0){
     radioButtonSelecionado = findViewById( idRBSelecionado );
 }
 ----
+
+Neste link:https://developer.android.com/guide/topics/ui/controls/radiobutton[link] é apresentado um exemplo prático de uso do RadioButton.
+
+
 
 === Spinner
 
