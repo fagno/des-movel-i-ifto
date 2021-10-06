@@ -77,7 +77,7 @@ include::../codigo/sharedpreference/activity_main.xml[]
 Na figura a seguir, apresentamos a tela de exemplo do aplicativo. Ao fechar o aplicativo e abrir novamente você vai observar que o nome informado ainda permanece visível no campo de impressão. Se você desinstalar o aplicativo, o nome informado não ficará visível, pois o arquivo de preferência deixa de existir.
 
 .Tela do aplicativo
-image::sharedpreferenceexemplo.png[]
+image::spexemplo.png[width=682,height=394]
 
 == SQLite
 

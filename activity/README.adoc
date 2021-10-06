@@ -153,7 +153,7 @@ public boolean onOptionsItemSelected(MenuItem item) {
 }
 ----
 
-=== Enviando dados para outra tela
+=== Enviando dados para outra activity
 
 Com a classe Bundle é possível enviar dados de uma activity para outra usando a estrutura chave e valor. No entanto, neste tutorial irei apresentar como fazer tal tarefa utilizando a classe Intent devido já está sendo utilizada durante a navegação entre telas.
 
@@ -165,13 +165,15 @@ intent.putExtra("chave","Android Studio!");
 startActivity(intent);
 ----
 
+
+
+
 Para ler o parâmetro na outra activity faça conforme a seguir.
 
-.Enviar dados para outra activity
+.Ler dados enviado por outra activity
 [source, java]
 ----
-Intent intent = getIntent();
-String valor = intent.getStringExtra("chave");
+String valor = getIntent().getStringExtra("chave");
 ----
 
 Se você imprimir o valor da String "valor" a saída será "Android Studio!".
