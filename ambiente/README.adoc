@@ -1,7 +1,7 @@
 :icons: font
 :allow-uri-read:
 //caminho padrão para imagens
-:imagesdir: images
+//:imagesdir: images
 :numbered:
 :figure-caption: Figura
 :doctype: book

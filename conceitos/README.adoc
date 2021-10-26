@@ -1,7 +1,7 @@
 :icons: font
 :allow-uri-read:
 //caminho padrão para imagens
-:imagesdir: images
+//:imagesdir: images
 :numbered:
 :figure-caption: Figura
 :doctype: book
@@ -48,7 +48,7 @@ A pasta app representa o módulo padrão que é criado no projeto. Nessa pasta t
 Já na raiz do projeto existem os outros arquivos, como por exemplo o build.gradle geral de todo o projeto, que vale para todos os módulos. 
 
 .Estrutura do Projeto
-image::est-proj-android-studio.png[] 
+image::../images/est-proj-android-studio.png[] 
 
 app → Pode se criar diversos módulos e o módulo app é o padrão criado pelo Android Studio 
 
@@ -65,7 +65,7 @@ settings.dradle → Arquivo de configuração do Gradle que indica quais módulo
 Estrutura de arquivos da pasta app/ só visualizará esse tipo de estrutura se colocar no modo de visualização como Project, o mais adequado é deixar como Android, pois você visualizará só a parte mais usual no desenvolvimento.
 
 .Modo de visualização como Project
-image::modo-visu-project.png[] 
+image::../images/modo-visu-project.png[] 
 
 build → Pasta onde são salvo os arquivos de compilação. A apk por exemplo você encontrará na pasta build/outputs/apk
 

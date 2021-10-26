@@ -1,7 +1,7 @@
 :icons: font
 :allow-uri-read:
 //caminho padrão para imagens
-:imagesdir: images
+//:imagesdir: images
 :numbered:
 :figure-caption: Figura
 :doctype: book
@@ -77,7 +77,7 @@ em versões mais antigas do Android.
 === Ciclo de Vida de uma Activity
 
 .Ciclo de Vida de uma Activity [Fonte: Ref.2]
-image::activity_lifecycle.png[] 
+image::../images/activity_lifecycle.png[] 
 
 - onCreate(): Esse callback precisa ser implementado. Ele é acionado assim que o sistema cria a atividade. Quando a atividade é criada, ela insere o estado Criado. No método onCreate(), você executa a lógica básica de inicialização do aplicativo. Isso deve acontecer somente uma vez durante todo o período que a atividade durar. 
 
@@ -273,7 +273,7 @@ Uma notificação toast fornece um feedback simples sobre uma operação em uma 
 Por exemplo, clicar em Enviar em um e-mail aciona uma notificação toast "Enviando mensagem…", conforme exibido na captura de tela a seguir.
 
 .Mensagem Toast
-image::toast.png[]
+image::../images/toast.png[]
 
 Primeiro, instancie um objeto Toast com um dos métodos makeText(). Esse método usa três parâmetros: o app Context, a mensagem de texto e a duração da notificação toast. Ele retorna um objeto Toast devidamente inicializado. Você pode exibir a notificação toast com show(), conforme mostrado no exemplo a seguir.
 
@@ -458,7 +458,7 @@ public class ListaSimplesActivity extends AppCompatActivity implements AdapterVi
 O resultado do exemplo anterior é apresentado na figura a seguir.
 
 .ListView simples
-image::listview-simples.png[]
+image::../images/listview-simples.png[]
 
 Para definir ações de click nos itens da lista, sobreescreva o método `onItemClick()` conforme a seguir. 
 
@@ -630,7 +630,7 @@ public class aula211020 extends AppCompatActivity {
 
 O resultado deste exemplo é apresentado na figura a seguir.
 
-image::listview-customizado.png[]
+image::../images/listview-customizado.png[]
 
 === CheckBox
 
@@ -737,7 +737,7 @@ public class MainActivity extends AppCompatActivity {
 O resultado é apresenta na imagem a seguir.
 
 .Executando o App 
-image::spinnerresultadoapp.png[]
+image::../images/spinnerresultadoapp.png[]
 
 === ImageView
 
@@ -819,7 +819,7 @@ No layout activity_main.xml é necessário definir o componente AutoCompleteText
 Na figura a seguir, é apresentado a execução do exemplo.
 
 .Executando o App 
-image::autoCompleteTextView.png[]
+image::../images/autoCompleteTextView.png[]
 
 === Seekbar
 
@@ -832,7 +832,7 @@ Atributos importantes do componente:
 - a propriedade "max" define o valor valor máximo da SeekBar.
 
 .Seekbar
-image::seekbar.png[]
+image:../images/seekbar.png[]
 
 .MainActivity.java
 [source, java]
@@ -867,7 +867,7 @@ seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 Semelhante ao Seekbar, o Ratingbar  mostra uma classificação em estrelas.
 
 .Ratingbar
-image::ratingbar.png[]
+image::../images/ratingbar.png[]
 
 O método setOnRatingBarChangeListener() retorna através do parâmetro "rating" o nível selecionado de acordo a quantidade de estrelas.
 

@@ -1,7 +1,7 @@
 :icons: font
 :allow-uri-read:
 //caminho padrão para imagens
-:imagesdir: images
+//:imagesdir: images
 :numbered:
 :figure-caption: Figura
 :doctype: book
@@ -34,7 +34,6 @@ ifdef::env-github,env-browser[]
 :tip-caption: :bulb:
 :warning-caption: :warning:
 endif::[]
-
 link:https://fagno.github.io/des-movel-i-ifto/[HOME]
 
 = Programação para Dispositivos Móveis I
@@ -77,7 +76,7 @@ include::../codigo/sharedpreference/activity_main.xml[]
 Na figura a seguir, apresentamos a tela de exemplo do aplicativo. Ao fechar o aplicativo e abrir novamente você vai observar que o nome informado ainda permanece visível no campo de impressão. Se você desinstalar o aplicativo, o nome informado não ficará visível, pois o arquivo de preferência deixa de existir.
 
 .Tela do aplicativo
-image::spexemplo.png[width=682,height=394]
+image::../images/spexemplo.png[width=640,height=380,align=center]
 
 == SQLite
 
@@ -285,7 +284,7 @@ Para trabalhar com o sistema de arquivos de um dispositivo, faça o seguinte:
 O Android Studio salvará os arquivos que você abrir dessa maneira em um diretório temporário fora do seu projeto. Se você fizer modificações em um arquivo aberto com o Device File Explorer e quiser salvá-las no dispositivo, será necessário fazer o upload manual da versão modificada do arquivo no dispositivo.
 
 .Janela da ferramenta Device File Explorer
-image::devicefileexplorer.png[]
+image::../images/devicefileexplorer.png[]
 
 Ao analisar os arquivos de um dispositivo, os seguintes diretórios são particularmente úteis:
 
@@ -311,17 +310,17 @@ IMPORTANT: nem todos os arquivos em um dispositivo de hardware ficam visíveis n
 
 Caso você deseja utilizar algum software cliente de SQLite para visualizar o conteúdo do banco de dados, siga os passos do item 2.8 e baixe os arquivos da pasta databases conforme a seguir.
 
-image::savefiledb.gif[]
+image::../images/savefiledb.gif[]
 
 Após baixar os arquivos, abra o seu cliente SQLite, neste exemplo estou utilizando o DB Browser for SQLite, ferramenta que você pode baixar através do endereço https://sqlitebrowser.org/.
 
 Ao abrir o arquivo do banco de dados, você irá ver as inforamções do banco conforme figura a seguir.
 
-image::estruturabanco.png[width=682,height=394]
+image::../images/estruturabanco.png[width=682,height=394]
 
 A próxima figura apresenta os dados da tabela, funcionalidade disponível através do DB Browser.
 
-image::navegardadostabela.png[width=682,height=394]
+image::../images/navegardadostabela.png[width=682,height=394]
 
 == Referências
 
