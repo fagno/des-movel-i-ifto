@@ -169,8 +169,8 @@ Para ver uma linha no cursor, use um dos métodos de movimento do Cursor, que se
         );
 
         List<Pessoa> pessoas = new ArrayList<>();
-        Pessoa p=new Pessoa();
         while(cursor.moveToNext()) {
+            Pessoa p=new Pessoa();
             p.setId(cursor.getInt(cursor.getColumnIndex("ID")));
             p.setNome(cursor.getString(cursor.getColumnIndex("NOME")));
             p.setIdade(Integer.parseInt(cursor.getString(cursor.getColumnIndex("IDADE"))));
