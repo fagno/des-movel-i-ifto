@@ -138,4 +138,6 @@ O modo release é utilizado para publicar o aplicativo no Google Play e deve ser
 
 == Referências
 
+1. https://developer.android.com/
+
 1. LECHETA, Ricardo R. Google Android: Aprenda a criar aplicações para dispositivos móveis com o Android SDK. 5a ed. – São Paulo: Novatec, 2016.

@@ -47,15 +47,16 @@ Os vídeos a seguir mostra cada etapa do procedimento de configuração no Windo
 
 === Windows
 
-video::https://developer.android.com/static/studio/videos/studio-install-windows.mp4?hl=pt-br[width=640,height=480]
+link:https://developer.android.com/static/studio/videos/studio-install-windows.mp4?hl=pt-br[Tutorial Windows]
+
 
 === Linux
 
-video::https://developer.android.com/static/studio/videos/studio-install-linux.mp4?hl=pt-br[width=640,height=480]
+link:https://developer.android.com/static/studio/videos/studio-install-linux.mp4?hl=pt-br[Tutorial Linux]
 
 === Mac
 
-video::https://developer.android.com/static/studio/videos/studio-install-mac.mp4?hl=pt-br[width=640,height=480]
+link:https://developer.android.com/static/studio/videos/studio-install-mac.mp4?hl=pt-br[Tutorial Mac]
 
 
 == Referências
