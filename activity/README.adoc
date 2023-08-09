@@ -51,28 +51,44 @@ IMPORTANT: Cada Activity deve ser obrigatoriamente declarada no arquivo AndroidM
 
 Na prática podemos associar a palavra “activity” à palavra “tela”. Iniciar uma activity: “iniciar um tela”. A tradução da palavra activity para o português é Atividade. 
 
-=== Classes FragmentActivity e AppCompatActivity
+A classe Activity é um componente fundamental em um aplicativo Android. As atividades são responsáveis pela navegação e interação em um aplicativo Android, e cada tela visível em um aplicativo é geralmente implementada como uma atividade.
 
-No Android 3.0 foram criadas a action bar e a API de fragments.
+Informações sobre:
 
-A action bar é representada pela classe android.app.ActionBar. Para utilizar essas classes em versões mais antigas do Android o Google criou a biblioteca de compatibilidade v4 (API Level 4) que é compatível com o Android 1.6 ou superior, e dentre as APIs que ela tem está contida a API
-de fragments.
+- Ciclo de Vida: As atividades têm um ciclo de vida que abrange diferentes estados, desde a criação até a destruição. Isso permite que você gerencie recursos, mantenha o estado do aplicativo e responda a eventos específicos. Alguns dos principais métodos do ciclo de vida incluem onCreate(), onStart(), onResume(), onPause(), onStop() e onDestroy().
 
-Para usar os fragments de compatibilidade todas as activities do projeto precisam herdar de android.support.v4.app.FragmentActivity, subclasse da
-classe android.app.Activity, que permite utilizar fragments em versões anteriores do Android. 
+- Interface do Usuário: As atividades geralmente contêm a interface do usuário do aplicativo. Isso pode incluir elementos como botões, campos de texto, imagens e outros componentes visuais que os usuários podem interagir.
 
-Da mesma forma, existe a biblioteca de compatibilidade v7 (API Level 7), que é compatível com Android 2.3 ou superior. A v7 contém a action bar, que permite habilitar a action bar em dispositivos mais antigos. 
+- Interações: As atividades são projetadas para responder a eventos de entrada do usuário, como toques na tela, cliques de botões e eventos de teclado. Você pode implemen- tar manipuladores de eventos para controlar como a atividade responde a esses eventos.
 
-Resumindo, temos três classes de activity que você precisa
-conhecer.
+- Intenções (Intents): As atividades são iniciadas e comunicam-se umas com as outras usando Intenções. Uma Intenção é um objeto que descreve a ação a ser realizada, como abrir uma atividade específica, enviar dados entre atividades ou realizar uma ação genérica.
 
-1. android.app.Activity: classe padrão da activity.
-2. android.support.v4.app.FragmentActivity: Classe da
-biblioteca de compatibilidade v4, que permite utilizar os
-fragments em versões mais antigas do Android.
-3. android.support.v7.app.FragmentActivity: Classe da
-biblioteca de compatibilidade v7, que permite utilizar a action bar
-em versões mais antigas do Android.
+- Layouts e Recursos: As atividades usam layouts definidos em arquivos XML para determinar a aparência da interface do usuário. Esses layouts podem conter elementos como botões, imagens e campos de texto, organizados em uma hierarquia visual.
+
+- Manifesto do Aplicativo: Cada atividade em um aplicativo deve ser declarada no arquivo AndroidManifest.xml. O manifesto descreve as propriedades da atividade, como sua classe, nome, ícone e configurações de permissão.
+
+- Estados de Execução: As atividades podem estar em diferentes estados de execução, incluindo em primeiro plano (visível para o usuário e interativo), em segundo plano (não visível, mas ainda em execução) ou em estado de pausa (ainda visível, mas não interativo).
+
+- Transições e Animações: Você pode definir animações de transição personalizadas ao mudar de uma atividade para outra para criar uma experiência de usuário mais agradável.
+
+- Padrão de Design: As atividades geralmente representam uma tela individual, seguindo o padrão de design "single screen" do Android, onde cada atividade tem uma função e interface específicas.
+
+=== Classe AppCompatActivity
+
+É uma classe fornecida pela biblioteca de suporte (agora parte do AndroidX) que oferece recursos aprimorados para desenvolvimento de atividades (activities) em aplicativos Android. Ela é uma evolução da classe padrão Activity do Android e foi projetada para simplificar o desenvolvimento de aplicativos que precisam oferecer suporte a recursos modernos e funcionar em uma variedade de versões do Android.
+
+A classe AppCompatActivity oferece recursos de compatibilidade para versões mais antigas do Android. Isso permite que você utilize recursos modernos, como Toolbars (barras de ferramentas) e Fragments, em versões mais antigas do sistema operacional.
+
+- Inclui suporte integrado ao Material Design, o que facilita a implementação de diretrizes de design consistentes em diferentes versões do Android.
+
+- Permite que você use a ActionBar, que é uma barra de título superior que pode conter opções de menu, ícones e outros elementos de navegação.
+
+- Oferece suporte aprimorado para trabalhar com Fragments, que são componentes reutilizáveis de interface do usuário.
+
+- Simplifica a aplicação e customização de temas e estilos para garantir uma aparência coerente em todo o aplicativo.
+
+- Possui recursos aprimorados para gerenciamento do ciclo de vida da atividade, facilitando o tratamento de eventos como criação, pausa, retomada e destruição.
+
 
 === Ciclo de Vida de uma Activity
 
