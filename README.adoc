@@ -35,7 +35,7 @@ Mestre em Modelagem Computacional de Sistemas / UFT.
 1. link:armazenamento/[Armazenamento no Android]
 1. link:fragments/[Fragments]
 
-IMPORTANT: MATERIAL EM CONSTRUÇÃO
+//IMPORTANT: MATERIAL EM CONSTRUÇÃO
 
 
 // .Teste [fonte: referência]
